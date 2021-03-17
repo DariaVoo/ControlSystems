@@ -38,7 +38,7 @@ def create_wood_block(lvl=1):
 
     wall_list = arcade.SpriteList()
     border_list = arcade.SpriteList()
-    # ДОЛЖНО ГЕНЕРИРОВАТЬСЯ
+
     x = y = 0  # координаты
     for row in level:  # вся строка
         for col in row:  # каждый символ
