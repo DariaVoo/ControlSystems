@@ -1,6 +1,6 @@
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
-SCREEN_TITLE = "Game with Patterns"
+SCREEN_TITLE = "Saw"
 
 # How many pixels to keep as a minimum margin between the character
 # and the edge of the screen.

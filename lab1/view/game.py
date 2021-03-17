@@ -1,10 +1,10 @@
 import arcade
 import os
 
-from constants import GRAVITY, END_OF_MAP
-from level import create_wood_block
-from player import Player
-from scroll_manage import scroll_manage
+from view.explosion import Explosion
+from view.level import create_wood_block
+from view.player import Player
+from view.scroll_manage import scroll_manage
 
 
 class GameView(arcade.View):
@@ -42,6 +42,7 @@ class GameView(arcade.View):
         self.view_left = 0
         self.view_bottom = 0
 
+        # Предзагрузка анимации взрыва
         # Pre-load the animation frames. We don't do this in the __init__
         # of the explosion sprite because it takes too long and would cause the game to pause.
         self.explosion_texture_list = []
@@ -87,6 +88,9 @@ class GameView(arcade.View):
         self.wall_list.draw()
         self.border_list.draw()
 
+        # Рисуем взрыв
+        self.explosions_list.draw()
+
         # Рисуем score на экране
         score_text = f"Score: {self.score}"
         arcade.draw_text(score_text, 10 + self.view_left, 10 + self.view_bottom,
@@ -110,18 +114,30 @@ class GameView(arcade.View):
         self.physics_engine.update()
 
         # Сколько блоков спилили
-        coin_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
+        block_hit_list = arcade.check_for_collision_with_list(self.player_sprite,
                                                              self.wall_list)
-        print(coin_hit_list)
-        for wall in coin_hit_list:
+        for wall in block_hit_list:
+
+            # If it did...
+            # Make an explosion
+            explosion = Explosion(self.explosion_texture_list)
+            # Move it to the location of the coin
+            explosion.center_x = wall.center_x
+            explosion.center_y = wall.center_y
+            # Call update() because it sets which image we start on
+            explosion.update()
+            # Add to a list of sprites that are explosions
+            self.explosions_list.append(explosion)
+
             wall.remove_from_sprite_lists()
             self.score += 1
             self.window.total_score += 1
 
+        self.explosions_list.update()
 
 
         # --- Manage Scrolling ---
-        # Нужно ли менять view port
+        # Нужно ли менять view port, если да, то меняем
         self.view_left, self.view_bottom = scroll_manage(self.player_sprite,
                                                          self.view_left, self.view_bottom)
 
