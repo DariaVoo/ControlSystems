@@ -4,6 +4,7 @@ SPRITE_SCALING = 0.45
 SPRITE_NATIVE_SIZE = 128
 SPRITE_SIZE = int(SPRITE_NATIVE_SIZE * SPRITE_SCALING)
 
+
 def create_wood_block(lvl=1):
     """
     Создание карты уровня. По факту - наполнение wall_list
@@ -38,4 +39,5 @@ def create_wood_block(lvl=1):
         y += wall._get_height()  # то же самое и с высотой
         x = 0  # на каждой новой строчке начинаем с нуля
 
+    # print("WALL",wall._get_width())
     return border_list, wall_list
