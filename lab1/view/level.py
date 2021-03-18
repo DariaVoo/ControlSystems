@@ -5,7 +5,7 @@ SPRITE_NATIVE_SIZE = 128
 SPRITE_SIZE = int(SPRITE_NATIVE_SIZE * SPRITE_SCALING)
 
 
-def create_wood_block(lvl=1):
+def create_wood_block():
     """
     Создание карты уровня. По факту - наполнение wall_list
     """

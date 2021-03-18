@@ -97,15 +97,11 @@ class GameView(arcade.View):
                          arcade.csscolor.WHITE, 18)
 
     def on_key_press(self, x=0, y=0, mode="AUTO"):
-        """Called whenever a key is pressed. """
-
-        # if type(x) == arcade.key:
-        #     x = y = 0
-        # Сдвигает игрока на позицию x, y
+        """ Called whenever a key is pressed. """
         self.player_sprite.move(x, y, mode)
 
     def on_key_release(self, key, modifiers=None):
-        """Called when the user releases a key. """
+        """ Called when the user releases a key. """
         self.player_sprite.stop(key)
 
     def on_update(self, delta_time):
