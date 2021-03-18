@@ -1,10 +1,8 @@
 import json
 
 def parse_json():
-    with open('request.json', "r") as read_file:
+    with open('/home/dvoo/ControlSystems/lab1/request_manual.json', "r") as read_file:
         data = json.load(read_file)
-        print(data)
-
     return data
 
 
