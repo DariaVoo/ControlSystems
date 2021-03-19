@@ -35,9 +35,6 @@ class GameView(arcade.View):
         self.score = 0
         self.game_over = False
 
-        self.level = 1
-        self.max_level = 50
-
         # scroll (move camera)
         self.view_left = 0
         self.view_bottom = 0
@@ -68,7 +65,7 @@ class GameView(arcade.View):
         self.player.append(self.player_sprite)
 
         # Создаём первоночальный блок дерева
-        self.border_list, self.wall_list = create_wood_block(self.level)
+        self.border_list, self.wall_list = create_wood_block()
 
         # Физический движок для платформера
         self.physics_engine = arcade.PhysicsEnginePlatformer(self.player_sprite, self.border_list, 0)
