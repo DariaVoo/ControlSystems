@@ -10,6 +10,8 @@ from view.scroll_manage import scroll_manage
 class GameView(arcade.View):
     """ Main application class. """
 
+
+
     def __init__(self):
         """
         Initializer
